@@ -36,6 +36,8 @@ UINavigationControllerDelegate {
         super.viewDidLoad()
 
         configureUI(topText: topDefaultValue, bottomText: bottomDefaultValue)
+
+        configureNavBarButtons(isEnable: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +46,6 @@ UINavigationControllerDelegate {
         subscribeToKeyboardNotifications()
 
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        shareButton.isEnabled = false
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,13 +69,6 @@ UINavigationControllerDelegate {
         configureNavBarButtons(isEnable: false)
     }
 
-    private func presentUIImagePickerController(sorceType: UIImagePickerController.SourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = sorceType
-        present(imagePicker, animated: true, completion: nil)
-    }
-
     // MARK: - UI Style
     func setupTextField(_ textField: UITextField, text: String) {
 
@@ -83,7 +77,7 @@ UINavigationControllerDelegate {
 
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.white,
-            NSAttributedString.Key.foregroundColor: UIColor.green,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSAttributedString.Key.strokeWidth: 3,
             NSAttributedString.Key.paragraphStyle: titleParagraphStyle
@@ -99,6 +93,13 @@ UINavigationControllerDelegate {
         memeImageView.image = image
         setupTextField(topTextField, text: topText)
         setupTextField(bottomTextField, text: bottomText)
+    }
+
+    private func presentUIImagePickerController(sorceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sorceType
+        present(imagePicker, animated: true, completion: nil)
     }
 
     // MARK: - Keyboard
