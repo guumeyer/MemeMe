@@ -38,6 +38,9 @@ UINavigationControllerDelegate {
         configureUI(topText: topDefaultValue, bottomText: bottomDefaultValue)
 
         configureNavBarButtons(isEnable: false)
+        
+        // Hide the keyboard when tap the memeImageView
+        setupUITapGestureRecognizer(view: memeImageView, action: #selector(handleMemeImageViewTap(sender:)))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -172,6 +175,16 @@ UINavigationControllerDelegate {
         }
 
         return keyboardSize.cgRectValue.height
+    }
+    
+    private func setupUITapGestureRecognizer(view: UIView, action: Selector ) {
+        let tap = UITapGestureRecognizer(target: self, action: action)
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func handleMemeImageViewTap(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 
     // MARK: - Notification Center
