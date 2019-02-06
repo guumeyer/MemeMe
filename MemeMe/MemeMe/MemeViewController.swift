@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeViewController.swift
 //  MemeMe
 //
 //  Created by Meyer, Gustavo on 2/3/19.
@@ -69,17 +69,40 @@ UINavigationControllerDelegate {
         configureNavBarButtons(isEnable: false)
     }
 
+    @IBAction func shareAction(_ sender: Any) {
+        guard let memedImage = generateMemedImage()  else {
+            Alerts.showAlert(self, Alerts.GenerateMemeFailedTitle, message: Alerts.GenerateMemeFailedMessage)
+            return
+        }
+        let controller = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        controller.completionWithItemsHandler = { [save] activity, success, items, error in
+            if success {
+                save()
+            } else {
+                Alerts.showAlert(self, Alerts.GenerateMemeFailedTitle, message: String(describing: error))
+            }
+
+            self.dismiss(animated: true, completion: nil)
+        }
+        self.present(controller, animated: true, completion: nil)
+    }
+
     // MARK: - UI Style
-    func setupTextField(_ textField: UITextField, text: String) {
+
+    /// Defines the common text style for UITextField
+    ///
+    /// - parameters: textField - The `UITextField` will be defined the text style
+    /// - parameters: text - The text value will be formatted
+    private func setupTextField(_ textField: UITextField, text: String) {
 
         let titleParagraphStyle = NSMutableParagraphStyle()
         titleParagraphStyle.alignment = .center
 
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.white,
+            NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key.strokeWidth: 3,
+            NSAttributedString.Key.strokeWidth: -3.0,
             NSAttributedString.Key.paragraphStyle: titleParagraphStyle
         ]
         textField.autocapitalizationType = .allCharacters
@@ -89,12 +112,20 @@ UINavigationControllerDelegate {
         textField.defaultTextAttributes = memeTextAttributes
     }
 
-    fileprivate func configureUI(topText: String, bottomText: String, image: UIImage? = nil) {
+    /// Configure the Meme UI componets
+    ///
+    /// - parameters: topText - The text value for `topTextField`.
+    /// - parameters: bottomText - The text value for `bottomTextField`.
+    /// - parameters: image - The image to set to the `memeImageView.image`.
+    private func configureUI(topText: String, bottomText: String, image: UIImage? = nil) {
         memeImageView.image = image
         setupTextField(topTextField, text: topText)
         setupTextField(bottomTextField, text: bottomText)
     }
 
+    /// Presents the UIImagePickerController modal view
+    ///
+    /// - parameters: The `UIImagePickerController.SourceType` option
     private func presentUIImagePickerController(sorceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -102,10 +133,25 @@ UINavigationControllerDelegate {
         present(imagePicker, animated: true, completion: nil)
     }
 
+    /// Configures the Navigation bar buttons
+    ///
+    /// - parameters: isEnable - Defines the buttons are enabled
+    private func configureNavBarButtons(isEnable: Bool) {
+        shareButton.isEnabled = isEnable
+        cancelButton.isEnabled = isEnable
+    }
+
+    /// Hidden the navigation bar and tool bar
+    ///
+    /// - parameters: isHidden - Defines the Navigation bar and Tool bar are hidden
+    private func configuraToolBarAndNavBar(isHidden: Bool) {
+        toolbar.isHidden = isHidden
+        navigationController?.isNavigationBarHidden = isHidden
+    }
+
     // MARK: - Keyboard
 
     @objc func keyboardWillShow(_ notification: Notification) {
-        print("keyboardWillShow")
         if shouldMoveFrameOriginY {
             view.frame.origin.y = -getKeyboardHeight(notification)
         }
@@ -149,25 +195,7 @@ UINavigationControllerDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    // MARK: - Actions
-    @IBAction func shareAction(_ sender: Any) {
-        guard let memedImage = generateMemedImage()  else {
-            //TODO: show alert view to select a image
-            return
-        }
-        let controller = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        controller.completionWithItemsHandler = { activity, success, items, error in
-            if success {
-                self.save()
-            } else {
-                // TODO: call alert error message
-            }
-
-            self.dismiss(animated: true, completion: nil)
-        }
-        self.present(controller, animated: true, completion: nil)
-    }
-
+    /// Saves the meme object to be editable
     private func save() {
         // Create the meme
         guard let originalImage = memeImageView.image,
@@ -176,13 +204,22 @@ UINavigationControllerDelegate {
                 return
         }
 
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: originalImage, memedImage: memedImage)
+        let meme = Meme(topText: topTextField.text!,
+                        bottomText: bottomTextField.text!,
+                        originalImage: originalImage,
+                        memedImage: memedImage)
+
+        dump(meme)
     }
 
+    /// Generates the meme image
+    ///
+    /// - returns: The meme image
     private func generateMemedImage() -> UIImage? {
+
         // Hide toolbar and navbar
-        toolbar.isHidden = true
-        navigationController?.isNavigationBarHidden = true
+        configuraToolBarAndNavBar(isHidden: true)
+
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -192,18 +229,11 @@ UINavigationControllerDelegate {
         }
 
         UIGraphicsEndImageContext()
-
         // Show toolbar and navbar
-        toolbar.isHidden = false
-        navigationController?.isNavigationBarHidden = false
+        configuraToolBarAndNavBar(isHidden: false)
+
         return memedImage
     }
-
-    fileprivate func configureNavBarButtons(isEnable: Bool) {
-        shareButton.isEnabled = isEnable
-        cancelButton.isEnabled = isEnable
-    }
-
 }
 
 // MARK: - UIImagePickerControllerDelegate
@@ -218,7 +248,7 @@ extension MemeViewController:  UIImagePickerControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
-
+// MARK: UITextFieldDelegate
 extension MemeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         shouldMoveFrameOriginY = textField == bottomTextField

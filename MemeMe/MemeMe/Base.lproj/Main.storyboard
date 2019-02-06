@@ -52,7 +52,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S2y-Ha-5be">
-                                <rect key="frame" x="16" y="516" width="343" height="70"/>
+                                <rect key="frame" x="16" y="563" width="343" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="iwN-Q3-XnV"/>
                                 </constraints>
@@ -72,7 +72,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S2y-Ha-5be" secondAttribute="trailing" constant="16" id="VGu-qK-dw2"/>
                             <constraint firstItem="Gq2-Jj-OK1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aCl-hW-rc0"/>
                             <constraint firstItem="cM4-An-dXo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="gth-Mb-ckv"/>
-                            <constraint firstItem="S2y-Ha-5be" firstAttribute="top" secondItem="gwz-tG-FUd" secondAttribute="bottom" constant="-107" id="hgz-xb-qxX"/>
+                            <constraint firstItem="S2y-Ha-5be" firstAttribute="top" secondItem="gwz-tG-FUd" secondAttribute="bottom" constant="-60" id="hgz-xb-qxX"/>
                             <constraint firstItem="Gq2-Jj-OK1" firstAttribute="top" secondItem="gwz-tG-FUd" secondAttribute="bottom" id="mfF-zi-veY"/>
                             <constraint firstItem="cM4-An-dXo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="snm-hI-zjz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gwz-tG-FUd" secondAttribute="trailing" id="t2t-r7-otV"/>
