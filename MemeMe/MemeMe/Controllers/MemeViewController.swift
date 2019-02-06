@@ -28,6 +28,11 @@ UINavigationControllerDelegate {
     private let topDefaultValue = "TOP"
     private let bottomDefaultValue = "BOTTOM"
     private var shouldMoveFrameOriginY: Bool = false
+    var memes: [Meme]! {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.memes
+    }
 
     // MARK: - Life cycle
 
@@ -38,6 +43,9 @@ UINavigationControllerDelegate {
         configureUI(topText: topDefaultValue, bottomText: bottomDefaultValue)
 
         configureNavBarButtons(isEnable: false)
+
+        // Hide the keyboard when tap the memeImageView
+        setupUITapGestureRecognizer(view: memeImageView, action: #selector(handleMemeImageViewTap(sender:)))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -174,6 +182,16 @@ UINavigationControllerDelegate {
         return keyboardSize.cgRectValue.height
     }
 
+    private func setupUITapGestureRecognizer(view: UIView, action: Selector ) {
+        let tap = UITapGestureRecognizer(target: self, action: action)
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func handleMemeImageViewTap(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
     // MARK: - Notification Center
 
     func subscribeToKeyboardNotifications() {
@@ -199,7 +217,9 @@ UINavigationControllerDelegate {
     private func save() {
         // Create the meme
         guard let originalImage = memeImageView.image,
-            let memedImage = generateMemedImage()  else {
+            let memedImage = generateMemedImage(),
+            let object = UIApplication.shared.delegate,
+            let appDelegate = object as? AppDelegate else {
                 Alerts.showAlert(self, Alerts.GenerateMemeFailedTitle, message: Alerts.GenerateMemeFailedMessage)
                 return
         }
@@ -209,7 +229,8 @@ UINavigationControllerDelegate {
                         originalImage: originalImage,
                         memedImage: memedImage)
 
-        dump(meme)
+        // Add it to the memes array in the Application Delegate
+        appDelegate.memes.append(meme)
     }
 
     /// Generates the meme image
