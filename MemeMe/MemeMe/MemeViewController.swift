@@ -181,6 +181,16 @@ UINavigationControllerDelegate {
 
         return keyboardSize.cgRectValue.height
     }
+    
+    private func setupUITapGestureRecognizer(view: UIView, action: Selector ) {
+        let tap = UITapGestureRecognizer(target: self, action: action)
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func handleMemeImageViewTap(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
 
     private func setupUITapGestureRecognizer(view: UIView, action: Selector ) {
         let tap = UITapGestureRecognizer(target: self, action: action)
