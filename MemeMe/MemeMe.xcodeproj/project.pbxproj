@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		DB561A5A2209622000EFACE4 /* MemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB561A592209622000EFACE4 /* MemeViewController.swift */; };
 		DB561A5C220963AD00EFACE4 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB561A5B220963AD00EFACE4 /* Alerts.swift */; };
+		DB69DC48220D5D99006A5FF0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB69DC47220D5D99006A5FF0 /* Coordinator.swift */; };
+		DB69DC4A220D600F006A5FF0 /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB69DC49220D600F006A5FF0 /* MemeTableViewCell.swift */; };
+		DB69DC4C220DCBD6006A5FF0 /* MemeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB69DC4B220DCBD6006A5FF0 /* MemeViewerViewController.swift */; };
 		DBD0FB85220AC24200F61E02 /* MemeCollectionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD0FB84220AC24200F61E02 /* MemeCollectionCollectionViewController.swift */; };
 		DBD0FB87220AC36600F61E02 /* MemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD0FB86220AC36600F61E02 /* MemeTableViewController.swift */; };
 		DBD0FB8A220B17B600F61E02 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD0FB89220B17B600F61E02 /* MemeCollectionViewCell.swift */; };
@@ -22,6 +25,9 @@
 /* Begin PBXFileReference section */
 		DB561A592209622000EFACE4 /* MemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeViewController.swift; sourceTree = "<group>"; };
 		DB561A5B220963AD00EFACE4 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		DB69DC47220D5D99006A5FF0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DB69DC49220D600F006A5FF0 /* MemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTableViewCell.swift; sourceTree = "<group>"; };
+		DB69DC4B220DCBD6006A5FF0 /* MemeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeViewerViewController.swift; sourceTree = "<group>"; };
 		DBD0FB84220AC24200F61E02 /* MemeCollectionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionCollectionViewController.swift; sourceTree = "<group>"; };
 		DBD0FB86220AC36600F61E02 /* MemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTableViewController.swift; sourceTree = "<group>"; };
 		DBD0FB89220B17B600F61E02 /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -45,6 +51,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB4A13F2220E3BE60031881A /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				DB69DC47220D5D99006A5FF0 /* Coordinator.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		DB4A13F3220E3BFE0031881A /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				DBD0FB86220AC36600F61E02 /* MemeTableViewController.swift */,
+				DB69DC49220D600F006A5FF0 /* MemeTableViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		DB4A13F5220E3C190031881A /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				DBD0FB84220AC24200F61E02 /* MemeCollectionCollectionViewController.swift */,
+				DBD0FB89220B17B600F61E02 /* MemeCollectionViewCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		DB4A13F6220E3C340031881A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DB561A5B220963AD00EFACE4 /* Alerts.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		DB4A13F7220E3C520031881A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DB69DC4B220DCBD6006A5FF0 /* MemeViewerViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		DBD0FB80220AC13500F61E02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,11 +113,11 @@
 		DBD0FB82220AC16100F61E02 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DB561A5B220963AD00EFACE4 /* Alerts.swift */,
 				DB561A592209622000EFACE4 /* MemeViewController.swift */,
-				DBD0FB84220AC24200F61E02 /* MemeCollectionCollectionViewController.swift */,
-				DBD0FB86220AC36600F61E02 /* MemeTableViewController.swift */,
-				DBD0FB89220B17B600F61E02 /* MemeCollectionViewCell.swift */,
+				DB4A13F7220E3C520031881A /* Detail */,
+				DB4A13F6220E3C340031881A /* Utilities */,
+				DB4A13F5220E3C190031881A /* CollectionView */,
+				DB4A13F3220E3BFE0031881A /* TableView */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,6 +151,7 @@
 			children = (
 				DBF10D8D220802ED0052BF56 /* Info.plist */,
 				DBF10D81220802EC0052BF56 /* AppDelegate.swift */,
+				DB4A13F2220E3BE60031881A /* Navigation */,
 				DBD0FB82220AC16100F61E02 /* Controllers */,
 				DBD0FB81220AC14700F61E02 /* Views */,
 				DBD0FB80220AC13500F61E02 /* Model */,
@@ -182,11 +231,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB69DC48220D5D99006A5FF0 /* Coordinator.swift in Sources */,
 				DBD0FB85220AC24200F61E02 /* MemeCollectionCollectionViewController.swift in Sources */,
 				DB561A5A2209622000EFACE4 /* MemeViewController.swift in Sources */,
 				DBF10D942208ED000052BF56 /* Meme.swift in Sources */,
 				DBD0FB87220AC36600F61E02 /* MemeTableViewController.swift in Sources */,
 				DBD0FB8A220B17B600F61E02 /* MemeCollectionViewCell.swift in Sources */,
+				DB69DC4C220DCBD6006A5FF0 /* MemeViewerViewController.swift in Sources */,
+				DB69DC4A220D600F006A5FF0 /* MemeTableViewCell.swift in Sources */,
 				DB561A5C220963AD00EFACE4 /* Alerts.swift in Sources */,
 				DBF10D82220802EC0052BF56 /* AppDelegate.swift in Sources */,
 			);

@@ -25,14 +25,10 @@ UINavigationControllerDelegate {
     @IBOutlet weak var shareButton: UIBarButtonItem!
 
     // MARK: Properties
+    var meme: Meme?
     private let topDefaultValue = "TOP"
     private let bottomDefaultValue = "BOTTOM"
     private var shouldMoveFrameOriginY: Bool = false
-    var memes: [Meme]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.memes
-    }
 
     // MARK: - Life cycle
 
@@ -40,9 +36,7 @@ UINavigationControllerDelegate {
 
         super.viewDidLoad()
 
-        configureUI(topText: topDefaultValue, bottomText: bottomDefaultValue)
-
-        configureNavBarButtons(isEnable: false)
+        configureUI(for: meme)
 
         // Hide the keyboard when tap the memeImageView
         setupUITapGestureRecognizer(view: memeImageView, action: #selector(handleMemeImageViewTap(sender:)))
@@ -90,7 +84,7 @@ UINavigationControllerDelegate {
                 Alerts.showAlert(self, Alerts.GenerateMemeFailedTitle, message: String(describing: error))
             }
 
-            self.dismiss(animated: true, completion: nil)
+
         }
         self.present(controller, animated: true, completion: nil)
     }
@@ -129,6 +123,24 @@ UINavigationControllerDelegate {
         memeImageView.image = image
         setupTextField(topTextField, text: topText)
         setupTextField(bottomTextField, text: bottomText)
+    }
+
+    /// Configure the Meme UI componets whith `meme` instance
+    private func configureUI(for: Meme?) {
+        var topText = topDefaultValue
+        var bottonText = bottomDefaultValue
+        var memeImage: UIImage? = nil
+        var enableNavBarButtoms = false
+
+        if let memeObject = meme {
+            enableNavBarButtoms = true
+            topText = memeObject.topText
+            bottonText = memeObject.bottomText
+            memeImage = memeObject.originalImage
+        }
+
+        configureUI(topText: topText, bottomText: bottonText, image: memeImage)
+        configureNavBarButtons(isEnable: enableNavBarButtoms)
     }
 
     /// Presents the UIImagePickerController modal view
@@ -217,9 +229,7 @@ UINavigationControllerDelegate {
     private func save() {
         // Create the meme
         guard let originalImage = memeImageView.image,
-            let memedImage = generateMemedImage(),
-            let object = UIApplication.shared.delegate,
-            let appDelegate = object as? AppDelegate else {
+            let memedImage = generateMemedImage() else {
                 Alerts.showAlert(self, Alerts.GenerateMemeFailedTitle, message: Alerts.GenerateMemeFailedMessage)
                 return
         }
@@ -230,7 +240,9 @@ UINavigationControllerDelegate {
                         memedImage: memedImage)
 
         // Add it to the memes array in the Application Delegate
-        appDelegate.memes.append(meme)
+        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
+        
+        self.dismiss(animated: true, completion: nil)
     }
 
     /// Generates the meme image
