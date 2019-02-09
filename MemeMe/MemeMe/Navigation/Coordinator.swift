@@ -19,7 +19,7 @@ struct Coordinator {
 
     /// Preesent Edit Meme View Controller
     static func presentEditMeme(viewController: UIViewController, animated: Bool = true, meme: Meme? = nil) {
-        if let editMemeNavigationController = loadViewController(identifier: .edit) as? UINavigationController, let editMemeController =  editMemeNavigationController.viewControllers.first as? MemeViewController {
+        if let editMemeNavigationController = loadViewController(identifier: .edit) as? UINavigationController, let editMemeController =  editMemeNavigationController.viewControllers.first as? EditMemeViewController {
             editMemeController.meme = meme
             viewController.present(editMemeNavigationController, animated: animated, completion: nil)
         }
@@ -27,7 +27,7 @@ struct Coordinator {
 
     /// Push Edit Meme View Controller
     static func pushViewerMeme(viewController: UIViewController, animated: Bool = true, meme: Meme) {
-        if let editMemeController = loadViewController(identifier: .viewer) as? MemeViewerViewController {
+        if let editMemeController = loadViewController(identifier: .viewer) as? DetailMemeViewController {
             editMemeController.meme = meme
             viewController.navigationController?.pushViewController(editMemeController, animated: animated)
         }

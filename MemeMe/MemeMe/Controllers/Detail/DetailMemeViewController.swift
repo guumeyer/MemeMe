@@ -1,5 +1,5 @@
 //
-//  MemeViewerViewController.swift
+//  DetailMemeViewController.swift
 //  MemeMe
 //
 //  Created by Meyer, Gustavo on 2/8/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MemeViewerViewController: UIViewController {
+final class DetailMemeViewController: UIViewController {
 
     // MARK: - Properties
     var meme: Meme!

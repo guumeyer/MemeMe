@@ -1,5 +1,5 @@
 //
-//  MemeViewController.swift
+//  EditMemeViewController.swift
 //  MemeMe
 //
 //  Created by Meyer, Gustavo on 2/3/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MemeViewController: UIViewController,
+final class EditMemeViewController: UIViewController,
 UINavigationControllerDelegate {
 
     // MARK: IBOutlet
@@ -67,8 +67,9 @@ UINavigationControllerDelegate {
     }
 
     @IBAction func cancelAction(_ sender: Any) {
-        configureUI(topText: topDefaultValue, bottomText: bottomDefaultValue)
-        configureNavBarButtons(isEnable: false)
+//        configureUI(topText: topDefaultValue, bottomText: bottomDefaultValue)
+//        configureNavBarButtons(isEnable: false)
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func shareAction(_ sender: Any) {
@@ -158,7 +159,7 @@ UINavigationControllerDelegate {
     /// - parameters: isEnable - Defines the buttons are enabled
     private func configureNavBarButtons(isEnable: Bool) {
         shareButton.isEnabled = isEnable
-        cancelButton.isEnabled = isEnable
+        cancelButton.isEnabled = (meme != nil)
     }
 
     /// Hidden the navigation bar and tool bar
@@ -271,7 +272,7 @@ UINavigationControllerDelegate {
 
 // MARK: - UIImagePickerControllerDelegate
 
-extension MemeViewController:  UIImagePickerControllerDelegate {
+extension EditMemeViewController:  UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -282,7 +283,7 @@ extension MemeViewController:  UIImagePickerControllerDelegate {
     }
 }
 // MARK: UITextFieldDelegate
-extension MemeViewController: UITextFieldDelegate {
+extension EditMemeViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         shouldMoveFrameOriginY = textField == bottomTextField
         textField.text = ""

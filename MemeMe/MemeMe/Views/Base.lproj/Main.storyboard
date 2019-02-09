@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Meme View Controller-->
+        <!--Edit Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editView" id="BYZ-38-t0r" customClass="EditMemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,23 +164,23 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="rxv-2r-ND1" kind="show" id="tJb-Gg-ftS"/>
+                        <segue destination="rxv-2r-ND1" kind="show" identifier="detail" id="tJb-Gg-ftS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ph-Or-RyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1138.4000000000001" y="857.72113943028489"/>
         </scene>
-        <!--Meme Viewer View Controller-->
+        <!--Detail Meme View Controller-->
         <scene sceneID="6q5-2i-aKO">
             <objects>
-                <viewController storyboardIdentifier="viewerMeme" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rxv-2r-ND1" customClass="MemeViewerViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewerMeme" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rxv-2r-ND1" customClass="DetailMemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SKG-0w-PDc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qnc-6Z-c9L">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -188,7 +188,7 @@
                             <constraint firstAttribute="trailing" secondItem="qnc-6Z-c9L" secondAttribute="trailing" id="5nJ-bW-NiE"/>
                             <constraint firstItem="qnc-6Z-c9L" firstAttribute="top" secondItem="gaV-5E-T9l" secondAttribute="top" id="LRA-9j-qCj"/>
                             <constraint firstItem="qnc-6Z-c9L" firstAttribute="leading" secondItem="SKG-0w-PDc" secondAttribute="leading" id="XO9-Kn-Nu6"/>
-                            <constraint firstAttribute="bottom" secondItem="qnc-6Z-c9L" secondAttribute="bottom" id="dFu-pF-2Sf"/>
+                            <constraint firstItem="gaV-5E-T9l" firstAttribute="bottom" secondItem="qnc-6Z-c9L" secondAttribute="bottom" id="dt6-jZ-qfW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gaV-5E-T9l"/>
                     </view>
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0m-97-Xsl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2082" y="1152"/>
+            <point key="canvasLocation" x="2080.8000000000002" y="1151.8740629685158"/>
         </scene>
         <!--Sent Memes-->
         <scene sceneID="vVv-Qc-v4C">
@@ -252,7 +252,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="flowLayout" destination="Qso-n1-rnz" id="Zgv-Bv-RNN"/>
-                        <segue destination="rxv-2r-ND1" kind="show" id="s3E-zs-vDp"/>
+                        <segue destination="rxv-2r-ND1" kind="show" identifier="detail" id="s3E-zs-vDp"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drd-Sd-Blo" userLabel="First Responder" sceneMemberID="firstResponder"/>
