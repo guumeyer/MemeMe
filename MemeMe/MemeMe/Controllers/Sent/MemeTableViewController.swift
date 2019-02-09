@@ -13,7 +13,9 @@ final class MemeTableViewController: UITableViewController {
 
     // MARK: - Properties
 
-    var memes = (UIApplication.shared.delegate as! AppDelegate).memes
+    var memes: [Meme] {
+        return Repository.share.memes
+    }
 
     // MARK: - Life cycle
 
@@ -30,7 +32,6 @@ final class MemeTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
-        memes = (UIApplication.shared.delegate as! AppDelegate).memes
         tableView.reloadData()
     }
 
@@ -68,7 +69,7 @@ final class MemeTableViewController: UITableViewController {
                             forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            memes.remove(at: indexPath.row)
+            Repository.share.memes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

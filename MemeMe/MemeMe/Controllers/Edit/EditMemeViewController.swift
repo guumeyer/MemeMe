@@ -157,7 +157,7 @@ UINavigationControllerDelegate {
     /// - parameters: isEnable - Defines the buttons are enabled
     private func configureNavBarButtons(isEnable: Bool) {
         shareButton.isEnabled = isEnable
-        cancelButton.isEnabled = (meme != nil)
+        cancelButton.isEnabled = true
     }
 
     /// Hidden the navigation bar and tool bar
@@ -239,7 +239,7 @@ UINavigationControllerDelegate {
                         memedImage: memedImage)
 
         // Add it to the memes array in the Application Delegate
-        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
+        Repository.share.memes.append(meme)
         
         self.dismiss(animated: true, completion: nil)
     }

@@ -16,7 +16,9 @@ final class MemeCollectionCollectionViewController: UICollectionViewController {
 
     // MARK: - Properties
 
-    var memes = (UIApplication.shared.delegate as! AppDelegate).memes
+    var memes: [Meme] {
+        return Repository.share.memes
+    }
 
     // MARK: - Life cycle
 
@@ -28,7 +30,6 @@ final class MemeCollectionCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
-         memes = (UIApplication.shared.delegate as! AppDelegate).memes
         collectionView.reloadData()
     }
 

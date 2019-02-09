@@ -9,7 +9,7 @@
 import UIKit
 
 /// Coordinate the UI Navigation
-struct Coordinator {
+final class Coordinator {
 
     /// Represents the ViewController Identifier defined on Storyboard
     enum ViewIdentifier: String {

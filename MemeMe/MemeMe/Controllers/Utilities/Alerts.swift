@@ -9,7 +9,7 @@
 import UIKit
 
 /// Represents alert view
-struct Alerts {
+final class Alerts {
 
     static let DismissAlert = "Dismiss"
     static let GenerateMemeFailedTitle = "Generate Meme Failed"
