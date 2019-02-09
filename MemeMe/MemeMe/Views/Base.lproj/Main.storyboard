@@ -133,22 +133,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeCell" textLabel="FgB-Kk-UHQ" style="IBUITableViewCellStyleDefault" id="OTE-qR-EY4" customClass="MemeTableViewCell" customModule="MemeMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeCell" rowHeight="70" id="OTE-qR-EY4" customClass="MemeTableViewCell" customModule="MemeMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OTE-qR-EY4" id="Z4E-RM-ry6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FgB-Kk-UHQ">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovv-X1-kBx">
+                                            <rect key="frame" x="101" y="24.5" width="258" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9JK-8o-Svs">
+                                            <rect key="frame" x="0.0" y="0.0" width="87" height="69.5"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="87" id="esw-z6-Ufe"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="9JK-8o-Svs" secondAttribute="bottom" id="0rX-GR-Vgw"/>
+                                        <constraint firstItem="9JK-8o-Svs" firstAttribute="top" secondItem="Z4E-RM-ry6" secondAttribute="top" id="NW5-3T-OXq"/>
+                                        <constraint firstItem="9JK-8o-Svs" firstAttribute="leading" secondItem="Z4E-RM-ry6" secondAttribute="leading" id="T9d-S7-eOm"/>
+                                        <constraint firstItem="ovv-X1-kBx" firstAttribute="centerY" secondItem="Z4E-RM-ry6" secondAttribute="centerY" id="wdU-8A-KVv"/>
+                                        <constraint firstItem="ovv-X1-kBx" firstAttribute="leading" secondItem="9JK-8o-Svs" secondAttribute="trailing" constant="14" id="wkS-id-VFB"/>
+                                        <constraint firstItem="ovv-X1-kBx" firstAttribute="trailing" secondItem="Z4E-RM-ry6" secondAttribute="trailingMargin" id="x9z-0q-gXn"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="memLabel" destination="ovv-X1-kBx" id="WFc-Gd-oGv"/>
+                                    <outlet property="memeImageView" destination="9JK-8o-Svs" id="q56-1e-fHi"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -224,6 +242,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zrb-E2-6p3">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                     </subviews>
                                 </view>

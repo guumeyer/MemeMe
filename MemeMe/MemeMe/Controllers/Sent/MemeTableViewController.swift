@@ -20,9 +20,11 @@ final class MemeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        if memes.isEmpty {
+        if memes.isEmpty {
             Coordinator.presentEditMeme(viewController: self, animated: false)
-//        }
+        }
+
+        tableView.tableFooterView = UIView()
     }
 
     override func viewWillAppear(_ animated: Bool) {

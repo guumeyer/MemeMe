@@ -37,7 +37,13 @@ final class DetailMemeViewController: UIViewController {
 
     // MARK: - Actions
     @objc func editDidTouchUpInside() {
-        self.navigationController!.popToRootViewController(animated: false)
-        Coordinator.presentEditMeme(viewController: self, meme: meme)
+
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({
+            self.navigationController!.popToRootViewController(animated: false)
+        })
+        Coordinator.presentEditMeme(viewController: self, meme: self.meme)
+        CATransaction.commit()
+
     }
 }

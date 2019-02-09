@@ -84,8 +84,6 @@ UINavigationControllerDelegate {
             } else {
                 Alerts.showAlert(self, Alerts.GenerateMemeFailedTitle, message: String(describing: error))
             }
-
-
         }
         self.present(controller, animated: true, completion: nil)
     }
